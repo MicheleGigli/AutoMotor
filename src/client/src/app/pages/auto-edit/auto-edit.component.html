@@ -1,0 +1,54 @@
+<!-- TITLE -->
+<div class="mb-40 mt-40">
+    <h1>Auto</h1>
+</div>
+<div class="card mb-40">
+    <div class="card-body">
+        <h5 class="card-title border-bottom border-italia">
+            <i class="fa fa-search"></i> Dettaglio
+        </h5>
+        <form #editForm="ngForm" [ngClass]="{'was-validated': formValid!=null}">
+            <div class="row mt-40 justify-content-md-center">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="cc" [(ngModel)]="item.cc" name="cc" #cc="ngModel" >
+                        <label [className]="item.cc && item.cc.length > 0 ? 'active' : ''" for="cc">Cc</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="colore" [(ngModel)]="item.colore" name="colore" #colore="ngModel" >
+                        <label [className]="item.colore && item.colore.length > 0 ? 'active' : ''" for="colore">Colore</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class="form-control" id="proprietario" [(ngModel)]="item.proprietario" name="proprietario" #proprietario="ngModel" >
+                        <label [className]="item.proprietario? 'active' : ''" for="proprietario">Proprietario</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="tipo" [(ngModel)]="item.tipo" name="tipo" #tipo="ngModel" required>
+                        <label [className]="item.tipo && item.tipo.length > 0 ? 'active' : ''" for="tipo">Tipo *</label>
+                        <div class="invalid-feedback">Valore obbligatorio</div>
+                    </div>
+                    <!-- RELATIONS -->
+                    
+
+
+                    <h2 class="mb-20 mt-40" *ngIf="externalPersona[0]">Relazioni esterne</h2>
+        
+                        <h3 *ngIf="externalPersona[0]">Persona</h3>
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let item of externalPersona">
+                                <a [routerLink]="['/personas', item._id]">
+                                    {{item._id}}
+                                </a>
+                            </li>
+                        </ul>
+
+                    <!-- BUTTON BAR -->
+                    <div class="mt-40">
+                        <button class="btn btn-primary pull-right" (click)="save(editForm.valid, item)">Salva</button>
+                        <button class="btn btn-secondary pull-right mr-2" (click)="goBack()">Torna alla lista</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
